@@ -1,0 +1,21 @@
+name = "ocp-lab"
+
+[network]
+gateway = "192.168.43.1"
+netmask = "255.255.255.0"
+dns = ["192.168.43.1", "8.8.8.8"]
+
+
+[[workers]]
+name = "ocp-worker-01"
+ipAddr = "192.168.43.10"
+macAddr = "52:54:00:3b:da:fe"
+
+
+[[workers]]
+name = "ocp-worker-02"
+ipAddr = "192.168.43.11"
+macAddr = "52:54:00:3b:da:fe"
+
+
+

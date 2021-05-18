@@ -12,19 +12,25 @@ type Server struct {
 }
 
 var (
-	listenerAddr  = "10.10.10.21"
-	listenerIface = "wlp1s0"
+	listenerAddr  = "0.0.0.0"
+	listenerIface = "ocplab0"
 )
 
+func Mask24() net.IPMask {
+	return net.IPv4Mask(255, 255, 255, 0)
+}
+
 func (srv *Server) Serve() {
+	log.Println("DHCP server starting to serve requests")
 	if err := srv.dhcpsrv.Serve(); err != nil {
 		log.Fatal(err)
 	}
 }
 
 func handler(conn net.PacketConn, peer net.Addr, m *dhcpv4.DHCPv4) {
-	// this function will just print the received DHCPv6 message, without replying
+	log.Println("This's DHCP v4 handler function")
 	log.Print(m.Summary())
+	return
 }
 
 func NewServer() (*Server, error) {
